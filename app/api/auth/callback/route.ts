@@ -32,12 +32,15 @@ export async function GET(request: NextRequest) {
       const forwardedHost = request.headers.get('x-forwarded-host') // original origin before load balancer
       const isLocalEnv = process.env.NODE_ENV === 'development'
       
+      // Always redirect to dashboard after successful login
+      const redirectPath = '/dashboard'
+      
       if (isLocalEnv) {
-        response = NextResponse.redirect(`${origin}${next}`)
+        response = NextResponse.redirect(`${origin}${redirectPath}`)
       } else if (forwardedHost) {
-        response = NextResponse.redirect(`https://${forwardedHost}${next}`)
+        response = NextResponse.redirect(`https://${forwardedHost}${redirectPath}`)
       } else {
-        response = NextResponse.redirect(`${origin}${next}`)
+        response = NextResponse.redirect(`${origin}${redirectPath}`)
       }
       
       return response

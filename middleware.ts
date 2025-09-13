@@ -27,8 +27,12 @@ export async function middleware(request: NextRequest) {
     }
   )
 
-  // Skip auth check for auth callback routes
-  if (request.nextUrl.pathname.startsWith('/api/auth/')) {
+  // Skip auth check for auth callback routes and static files
+  if (
+    request.nextUrl.pathname.startsWith('/api/auth/') ||
+    request.nextUrl.pathname.startsWith('/_next/') ||
+    request.nextUrl.pathname.includes('.')
+  ) {
     return supabaseResponse
   }
 
