@@ -21,7 +21,7 @@ export default function FloatingHeader() {
                 {user?.user_metadata?.name || user?.email || 'Player'}
               </p>
               <p className="text-xs text-gray-600 font-semibold leading-none">
-                Ready to play!
+                Ready to vote!
               </p>
             </div>
           </div>

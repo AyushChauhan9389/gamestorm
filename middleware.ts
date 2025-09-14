@@ -61,6 +61,16 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(url)
   }
 
+  // Protect admin routes - only allow specific email
+  if (user && request.nextUrl.pathname.startsWith('/dashboard/admin')) {
+    const adminEmail = 'ayush.chuahan.22cse@bmu.edu.in'
+    if (user.email !== adminEmail) {
+      const url = request.nextUrl.clone()
+      url.pathname = '/dashboard'
+      return NextResponse.redirect(url)
+    }
+  }
+
   return supabaseResponse
 }
 

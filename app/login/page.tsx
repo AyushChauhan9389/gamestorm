@@ -24,7 +24,7 @@ export default function LoginPage() {
           <div className="text-center">
             <div className="w-16 h-16 border-4 border-black border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
             <h2 className="text-2xl font-black text-black mb-2">Loading...</h2>
-            <p className="text-gray-600 font-semibold">Getting you ready to play!</p>
+            <p className="text-gray-600 font-semibold">Getting you ready to vote!</p>
           </div>
         </div>
       </div>
@@ -41,10 +41,10 @@ export default function LoginPage() {
       <div className="bg-white border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-8 max-w-md w-full">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-black mb-2 text-black transform -rotate-1">
-            GAMESTORM
+            VOTESTORM
           </h1>
           <p className="text-lg font-bold text-gray-700">
-            Ready to play some games?
+            Ready to cast your vote?
           </p>
         </div>
 
@@ -86,14 +86,14 @@ export default function LoginPage() {
 
           <div className="text-center">
             <p className="text-sm text-gray-600 font-semibold">
-              Join the fun and compete with friends!
+              Make your voice heard in the polls!
             </p>
           </div>
         </div>
 
         <div className="mt-8 p-4 bg-yellow-200 border-2 border-black transform rotate-1">
           <p className="text-xs text-black font-bold text-center">
-            🎮 Epic gaming sessions await! 🏆
+            🗳️ Democracy in action! Your vote matters! 🏆
           </p>
         </div>
       </div>
