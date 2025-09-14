@@ -170,3 +170,29 @@ CREATE TABLE public.teams (
   CONSTRAINT teams_owner_id_fkey FOREIGN KEY (owner_id) REFERENCES auth.users(id),
   CONSTRAINT teams_mentor_id_fkey FOREIGN KEY (mentor_id) REFERENCES public.mentors(id)
 );
+CREATE TABLE public.vote_submissions (
+  vote_id uuid NOT NULL,
+  user_id uuid NOT NULL,
+  id uuid NOT NULL DEFAULT gen_random_uuid(),
+  submitted_at timestamp with time zone NOT NULL DEFAULT now(),
+  ranking_data jsonb NOT NULL DEFAULT '[]'::jsonb CHECK (jsonb_typeof(ranking_data) = 'array'::text),
+  CONSTRAINT vote_submissions_pkey PRIMARY KEY (id),
+  CONSTRAINT vote_submissions_vote_id_fkey FOREIGN KEY (vote_id) REFERENCES public.votes(id),
+  CONSTRAINT vote_submissions_user_id_fkey FOREIGN KEY (user_id) REFERENCES auth.users(id)
+);
+CREATE TABLE public.votes (
+  title text NOT NULL,
+  description text,
+  created_by uuid NOT NULL,
+  updated_at timestamp with time zone,
+  id uuid NOT NULL DEFAULT gen_random_uuid(),
+  is_active boolean NOT NULL DEFAULT false,
+  created_at timestamp with time zone NOT NULL DEFAULT now(),
+  team_names ARRAY NOT NULL DEFAULT '{}'::text[],
+  is_started boolean NOT NULL DEFAULT false,
+  is_completed boolean NOT NULL DEFAULT false,
+  started_at timestamp with time zone,
+  completed_at timestamp with time zone,
+  CONSTRAINT votes_pkey PRIMARY KEY (id),
+  CONSTRAINT votes_created_by_fkey FOREIGN KEY (created_by) REFERENCES auth.users(id)
+);
